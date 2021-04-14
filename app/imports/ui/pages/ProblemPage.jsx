@@ -8,7 +8,7 @@ import { Contacts } from '../../api/contact/Contacts';
 import { Notes } from '../../api/note/Notes';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class ListContacts extends React.Component {
+class ProblemPage extends React.Component {
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
@@ -32,7 +32,7 @@ class ListContacts extends React.Component {
 }
 
 // Require an array of Stuff documents in the props.
-ListContacts.propTypes = {
+ProblemPage.propTypes = {
   contacts: PropTypes.array.isRequired,
   notes: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
@@ -53,4 +53,4 @@ export default withTracker(() => {
     ready,
     notes,
   };
-})(ListContacts);
+})(ProblemPage);

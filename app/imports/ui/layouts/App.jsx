@@ -7,9 +7,12 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
-import ListContacts from '../pages/ListContacts';
-import ListContactsAdmin from '../pages/ListContactsAdmin';
-import AddContact from '../pages/AddContact';
+import ProblemPageAdmin from '../pages/ProblemPageAdmin';
+import StudentDatabase from '../pages/StudentDatabase';
+import SearchProblem from '../pages/SearchProblem';
+import ProblemPage from '../pages/ProblemPage';
+import Leaderboard from '../pages/Leaderboard';
+import ProfilePage from '../pages/ProfilePage';
 import EditContact from '../pages/EditContact';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -28,10 +31,13 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/signout" component={Signout}/>
-              <ProtectedRoute path="/list" component={ListContacts}/>
-              <ProtectedRoute path="/add" component={AddContact}/>
+              <ProtectedRoute path="/search" component={SearchProblem}/>
+              <ProtectedRoute path="/problem" component={ProblemPage}/>
+              <ProtectedRoute path="/leaderboard" component={Leaderboard}/>
+              <ProtectedRoute path="/profilepage" component={ProfilePage}/>
               <ProtectedRoute path="/edit/:_id" component={EditContact}/>
-              <AdminProtectedRoute path="/admin" component={ListContactsAdmin}/>
+              <AdminProtectedRoute path="/newproblem" component={ProblemPageAdmin}/>
+              <AdminProtectedRoute path="/users" component={StudentDatabase}/>
               <Route component={NotFound}/>
             </Switch>
             <Footer/>
