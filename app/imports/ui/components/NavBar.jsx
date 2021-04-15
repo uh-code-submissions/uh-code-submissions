@@ -11,39 +11,34 @@ class NavBar extends React.Component {
   render() {
     const menuStyle = { marginBottom: '10px' };
     return (
-        <Menu style={menuStyle} attached="top" borderless inverted color='black'>
-          <Menu.Item as={NavLink} activeClassName="" exact to="/">
-            <Header inverted as='h1'>UH Code Submissions</Header>
-          </Menu.Item>
-          {this.props.currentUser ? (
-              [<Menu.Item as={NavLink} activeClassName="active" exact to="/search" key='search'>Search Problem</Menu.Item>,
-                <Menu.Item as={NavLink} activeClassName="active" exact to="/profilepage" key='profilepage'>Profile Page</Menu.Item>,
-                <Menu.Item as={NavLink} activeClassName="active" exact to="/problem" key='problem'>Problem Page</Menu.Item>,
-                <Menu.Item as={NavLink} activeClassName="active" exact to="/leaderboard" key='leaderboard'>Leaderboard</Menu.Item>]
-          ) : ''}
-          {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/newproblem" key='newproblem'>Add New Problem</Menu.Item>
-          ) : ''}
-          {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/users" key='users'>Students' Database</Menu.Item>
-            ) : ''}
-          <Menu.Item position="right">
-            {this.props.currentUser === '' ? (
-                <Dropdown id="login-dropdown" text="Login" pointing="top right" icon={'user'}>
-                  <Dropdown.Menu>
-                    <Dropdown.Item id="login-dropdown-sign-in" icon="user" text="Sign In" as={NavLink} exact to="/signin"/>
-                    <Dropdown.Item id="login-dropdown-sign-up" icon="add user" text="Sign Up" as={NavLink} exact to="/signup"/>
-                  </Dropdown.Menu>
-                </Dropdown>
-            ) : (
-                <Dropdown id="navbar-current-user" text={this.props.currentUser} pointing="top right" icon={'user'}>
-                  <Dropdown.Menu>
-                    <Dropdown.Item id="navbar-sign-out" icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
-                  </Dropdown.Menu>
-                </Dropdown>
-            )}
-          </Menu.Item>
-        </Menu>
+      <Menu style={menuStyle} attached="top" borderless inverted color='black'>
+        <Menu.Item as={NavLink} activeClassName="" exact to="/">
+          <Header inverted as='h1'>UH Code Submissions</Header>
+        </Menu.Item>
+        {this.props.currentUser ? (
+          [<Menu.Item as={NavLink} activeClassName="active" exact to="/profilepage" key='profilepage'>Profile Page</Menu.Item>,
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/problem" key='problem'>Problem Page</Menu.Item>,
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/leaderboard" key='leaderboard'>Leaderboard</Menu.Item>]
+        ) : ''}
+        {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
+          <Menu.Item as={NavLink} activeClassName="active" exact to="/newproblem" key='newproblem'>Add New Problem</Menu.Item>
+        ) : ''}
+        {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
+          <Menu.Item as={NavLink} activeClassName="active" exact to="/users" key='users'>Students Database</Menu.Item>
+        ) : ''}
+        <Menu.Item position="right">
+          {this.props.currentUser === '' ? (
+            [<Menu.Item id="login-sign-in" icon="user" text="Sign In" as={NavLink} exact to="/signin" key='login'>Login</Menu.Item>,
+              <Menu.Item id="login-sign-up" icon="add user" text="Sign Up" as={NavLink} exact to="/signup" key='signup'>Sign Up</Menu.Item>]
+          ) : (
+            <Dropdown id="navbar-current-user" text={this.props.currentUser} pointing="top right" icon={'user'}>
+              <Dropdown.Menu>
+                <Dropdown.Item id="navbar-sign-out" icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
+        </Menu.Item>
+      </Menu>
     );
   }
 }

@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ProblemPageAdmin from '../pages/ProblemPageAdmin';
 import StudentDatabase from '../pages/StudentDatabase';
-import SearchProblem from '../pages/SearchProblem';
 import ProblemPage from '../pages/ProblemPage';
 import Leaderboard from '../pages/Leaderboard';
 import ProfilePage from '../pages/ProfilePage';
@@ -23,26 +22,25 @@ import Signout from '../pages/Signout';
 class App extends React.Component {
   render() {
     return (
-        <Router>
-          <div>
-            <NavBar/>
-            <Switch>
-              <Route exact path="/" component={Landing}/>
-              <Route path="/signin" component={Signin}/>
-              <Route path="/signup" component={Signup}/>
-              <Route path="/signout" component={Signout}/>
-              <ProtectedRoute path="/search" component={SearchProblem}/>
-              <ProtectedRoute path="/problem" component={ProblemPage}/>
-              <ProtectedRoute path="/leaderboard" component={Leaderboard}/>
-              <ProtectedRoute path="/profilepage" component={ProfilePage}/>
-              <ProtectedRoute path="/edit/:_id" component={EditContact}/>
-              <AdminProtectedRoute path="/newproblem" component={ProblemPageAdmin}/>
-              <AdminProtectedRoute path="/users" component={StudentDatabase}/>
-              <Route component={NotFound}/>
-            </Switch>
-            <Footer/>
-          </div>
-        </Router>
+      <Router>
+        <div>
+          <NavBar/>
+          <Switch>
+            <Route exact path="/" component={Landing}/>
+            <Route path="/signin" component={Signin}/>
+            <Route path="/signup" component={Signup}/>
+            <Route path="/signout" component={Signout}/>
+            <ProtectedRoute path="/problem" component={ProblemPage}/>
+            <ProtectedRoute path="/leaderboard" component={Leaderboard}/>
+            <ProtectedRoute path="/profilepage" component={ProfilePage}/>
+            <ProtectedRoute path="/edit/:_id" component={EditContact}/>
+            <AdminProtectedRoute path="/newproblem" component={ProblemPageAdmin}/>
+            <AdminProtectedRoute path="/users" component={StudentDatabase}/>
+            <Route component={NotFound}/>
+          </Switch>
+          <Footer/>
+        </div>
+      </Router>
     );
   }
 }
@@ -53,16 +51,16 @@ class App extends React.Component {
  * @param {any} { component: Component, ...rest }
  */
 const ProtectedRoute = ({ component: Component, ...rest }) => (
-    <Route
-        {...rest}
-        render={(props) => {
-          const isLogged = Meteor.userId() !== null;
-          return isLogged ?
-              (<Component {...props} />) :
-              (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
-              );
-        }}
-    />
+  <Route
+    {...rest}
+    render={(props) => {
+      const isLogged = Meteor.userId() !== null;
+      return isLogged ?
+        (<Component {...props} />) :
+        (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
+        );
+    }}
+  />
 );
 
 /**
@@ -71,17 +69,17 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
  * @param {any} { component: Component, ...rest }
  */
 const AdminProtectedRoute = ({ component: Component, ...rest }) => (
-    <Route
-        {...rest}
-        render={(props) => {
-          const isLogged = Meteor.userId() !== null;
-          const isAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
-          return (isLogged && isAdmin) ?
-              (<Component {...props} />) :
-              (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
-              );
-        }}
-    />
+  <Route
+    {...rest}
+    render={(props) => {
+      const isLogged = Meteor.userId() !== null;
+      const isAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
+      return (isLogged && isAdmin) ?
+        (<Component {...props} />) :
+        (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
+        );
+    }}
+  />
 );
 
 // Require a component and location to be passed to each ProtectedRoute.
