@@ -9,3 +9,6 @@ import App from '../../ui/layouts/App.jsx';
 Meteor.startup(() => {
   render(<App />, document.getElementById('root'));
 });
+
+Meteor.startup(() =>  document.body.classList.add('uh-code-submissions-background'));
+
