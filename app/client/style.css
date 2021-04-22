@@ -1,8 +1,11 @@
-.code-landing-background {
-  background-color: #404040;
-  background-size: cover;
-}
-
 .uh-code-submissions-background {
   background-color:  rgba(0, 0, 0, 0.87);
+}
+
+.code-landing-background {
+  background-image: url("https://github.com/uh-code-submissions/uh-code-submissions/blob/main/app/public/images/background1.png?raw=true");
+  background-color: #cccccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
