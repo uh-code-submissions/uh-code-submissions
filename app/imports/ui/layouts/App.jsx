@@ -12,7 +12,7 @@ import StudentDatabase from '../pages/StudentDatabase';
 import ProblemPage from '../pages/ProblemPage';
 import Leaderboard from '../pages/Leaderboard';
 import ProfilePage from '../pages/ProfilePage';
-import EditContact from '../pages/EditContact';
+import EditProblem from '../pages/EditProblem';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -33,7 +33,7 @@ class App extends React.Component {
             <ProtectedRoute path="/problem" component={ProblemPage}/>
             <ProtectedRoute path="/leaderboard" component={Leaderboard}/>
             <ProtectedRoute path="/profilepage" component={ProfilePage}/>
-            <ProtectedRoute path="/edit/:_id" component={EditContact}/>
+            <ProtectedRoute path="/edit/:_id" component={EditProblem}/>
             <AdminProtectedRoute path="/newproblem" component={ProblemPageAdmin}/>
             <AdminProtectedRoute path="/users" component={StudentDatabase}/>
             <Route component={NotFound}/>

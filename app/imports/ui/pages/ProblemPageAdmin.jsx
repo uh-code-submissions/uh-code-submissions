@@ -1,48 +1,59 @@
 import React from 'react';
+import { Grid, Segment, Header } from 'semantic-ui-react';
+import { AutoForm, TextField, LongTextField, SubmitField, ErrorsField } from 'uniforms-semantic';
+import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
-import { withTracker } from 'meteor/react-meteor-data';
-import PropTypes from 'prop-types';
-import ContactAdmin from '../components/ContactAdmin';
-import { Contacts } from '../../api/contact/Contacts';
+import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import SimpleSchema from 'simpl-schema';
+import { Problems } from '../../api/problem/Problems';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+// Create a schema to specify the structure of the data to appear in the form.
+const formSchema = new SimpleSchema({
+  title: String,
+  category: String,
+  description: String,
+});
+
+const bridge = new SimpleSchema2Bridge(formSchema);
+
+/** Renders the Page for adding a document. */
 class ProblemPageAdmin extends React.Component {
 
-  // If the subscription(s) have been received, render the page, otherwise show a loading icon.
-  render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  // On submit, insert the data.
+  submit(data, formRef) {
+    const { title, category, description } = data;
+    const owner = Meteor.user().username;
+    Problems.collection.insert({  title, category, description, owner },
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            swal('Success', 'Item added successfully', 'success');
+            formRef.reset();
+          }
+        });
   }
 
-  // Render the page once subscriptions have been received.
-  renderPage() {
+  // Render the form. Use Uniforms: https://github.com/vazco/uniforms
+  render() {
+    let fRef = null;
     return (
-      <Container>
-        <Header as="h2" textAlign="center" inverted>List Contacts (Admin)</Header>
-        <Card.Group>
-          {this.props.contacts.map((contact, index) => <ContactAdmin key={index} contact={contact} />)}
-        </Card.Group>
-      </Container>
+        <Grid container centered>
+          <Grid.Column>
+            <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
+              <Segment>
+                <Header as="h2" textAlign="center">Add a New Problem</Header>
+                <TextField name='title'/>
+                <TextField name='category'/>
+                <LongTextField name='description'/>
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
+              </Segment>
+            </AutoForm>
+          </Grid.Column>
+        </Grid>
     );
   }
 }
 
-// Require an array of Stuff documents in the props.
-ProblemPageAdmin.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  ready: PropTypes.bool.isRequired,
-};
-
-// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-export default withTracker(() => {
-  // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Contacts.adminPublicationName);
-  // Determine if the subscription is ready
-  const ready = subscription.ready();
-  // Get the Stuff documents
-  const contacts = Contacts.collection.find({}).fetch();
-  return {
-    contacts,
-    ready,
-  };
-})(ProblemPageAdmin);
+export default ProblemPageAdmin;

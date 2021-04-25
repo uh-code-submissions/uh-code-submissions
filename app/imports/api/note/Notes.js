@@ -14,7 +14,7 @@ class NotesCollection {
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
       note: String,
-      contactId: String,
+      problemId: String,
       owner: String,
       createdAt: Date,
     }, { tracker: Tracker });
@@ -28,6 +28,6 @@ class NotesCollection {
 
 /**
  * The singleton instance of the StuffsCollection.
- * @type {StuffsCollection}
+ * @type {NotesCollection}
  */
 export const Notes = new NotesCollection();

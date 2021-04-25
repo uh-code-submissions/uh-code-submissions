@@ -3,8 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import ContactAdmin from '../components/ContactAdmin';
-import { Contacts } from '../../api/contact/Contacts';
+import problemAdmin from '../components/ProblemAdmin';
+import { Problems } from '../../api/problem/Problems';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class StudentDatabase extends React.Component {
@@ -18,9 +18,9 @@ class StudentDatabase extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Header as="h2" textAlign="center" inverted>List Contacts (Admin)</Header>
+        <Header as="h2" textAlign="center" inverted>Students</Header>
         <Card.Group>
-          {this.props.contacts.map((contact, index) => <ContactAdmin key={index} contact={contact} />)}
+          {this.props.problems.map((problem, index) => <problemAdmin key={index} problem={problem} />)}
         </Card.Group>
       </Container>
     );
@@ -29,20 +29,20 @@ class StudentDatabase extends React.Component {
 
 // Require an array of Stuff documents in the props.
 StudentDatabase.propTypes = {
-  contacts: PropTypes.array.isRequired,
+  problems: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Contacts.adminPublicationName);
+  const subscription = Meteor.subscribe(Problems.adminPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Stuff documents
-  const contacts = Contacts.collection.find({}).fetch();
+  const problems = Problems.collection.find({}).fetch();
   return {
-    contacts,
+    problems,
     ready,
   };
 })(StudentDatabase);

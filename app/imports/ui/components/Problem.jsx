@@ -6,22 +6,17 @@ import Note from './Note';
 import AddNote from './AddNote';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
-class Contact extends React.Component {
+class Problem extends React.Component {
   render() {
     return (
       <Card>
         <Card.Content>
-          <Image
-            floated='right'
-            size='mini'
-            src={this.props.contact.image}
-          />
-          <Card.Header>{this.props.contact.firstName} {this.props.contact.lastName}</Card.Header>
-          <Card.Meta>{this.props.contact.address}</Card.Meta>
+          <Card.Header>{this.props.problem.title}</Card.Header>
+          <Card.Meta>{this.props.problem.category}</Card.Meta>
           <Card.Description>
-            {this.props.contact.description}          </Card.Description>
+            {this.props.problem.description}          </Card.Description>
           <Card.Content extra>
-            <Link to={`/edit/${this.props.contact._id}`}>Edit</Link>
+            <Link to={`/edit/${this.props.problem._id}`}>Edit</Link>
           </Card.Content>
 
         </Card.Content>
@@ -31,7 +26,7 @@ class Contact extends React.Component {
           </Feed>
         </Card.Content>
         <Card.Content extra>
-          <AddNote owner={this.props.contact.owner} contactId={this.props.contact._id}/>
+          <AddNote owner={this.props.problem.owner} problemId={this.props.problem._id}/>
         </Card.Content>
       </Card>
     );
@@ -39,10 +34,10 @@ class Contact extends React.Component {
 }
 
 // Require a document to be passed to this component.
-Contact.propTypes = {
-  contact: PropTypes.object.isRequired,
+Problem.propTypes = {
+  problem: PropTypes.object.isRequired,
   notes: PropTypes.array.isRequired,
 };
 
 // Wrap this component in withRouter since we use the <Link> React Router element.
-export default withRouter(Contact);
+export default withRouter(Problem);
