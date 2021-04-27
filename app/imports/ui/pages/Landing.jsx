@@ -5,32 +5,30 @@ import { Grid, Header, Icon, Image } from 'semantic-ui-react';
 class Landing extends React.Component {
   render() {
     return (
-      <div className="code-landing-background" >
+      <div className="code-background" >
         <Grid divided='vertically' id='landing-page' verticalAlign='middle' textAlign='center' container>
           <Grid.Row columns={2}>
             <Grid.Column width={10}>
-              <Image src="https://res.cloudinary.com/practicaldev/image/fetch/s--_kKDUKi9--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/j5axzkjkrhfvicea7uin.jpg"/>
             </Grid.Column>
             <Grid.Column width={8}>
-              <Header as='h1' inverted>Welcome to UH Code Submissions!</Header>
+              <h1 className="main-title">Welcome to UH Code Submissions!</h1>
               <Header as='h4' inverted>A platform to prepare for technical interviews with challenging problems and quick feedback.</Header>
+              <Header as='h4' inverted>In conjunction with PANDA, Programing and Algorithms Club!</Header>
             </Grid.Column>
           </Grid.Row>
+          <Image src='https://raw.githubusercontent.com/uh-code-submissions/uh-code-submissions/main/app/public/images/Panda.png' className="ui large image" centered />
           <Grid.Row columns={3}>
             <Grid.Column textAlign='center'>
-              <Icon size="huge" name="search" inverted></Icon>
+              <Icon size="huge" name="search" inverted/>
               <Header as='h2' inverted>Search for Problems</Header>
-              <Header as='h3' inverted></Header>
             </Grid.Column>
             <Grid.Column textAlign='center'>
-              <Icon size="huge" name="pencil" inverted></Icon>
+              <Icon size="huge" name="pencil" inverted/>
               <Header as='h2' inverted>Write Solutions</Header>
-              <Header as='h3' inverted></Header>
             </Grid.Column>
             <Grid.Column textAlign='center'>
-              <Icon size="huge" name="file alternate" inverted></Icon>
+              <Icon size="huge" name="file alternate" inverted/>
               <Header as='h2' inverted>Get Immediate Feedback</Header>
-              <Header as='h3' inverted></Header>
             </Grid.Column>
           </Grid.Row>
         </Grid>

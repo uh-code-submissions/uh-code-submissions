@@ -36,6 +36,7 @@ class App extends React.Component {
             <ProtectedRoute path="/leaderboard" component={Leaderboard}/>
             <ProtectedRoute path="/profilepage" component={ProfilePage}/>
             <ProtectedRoute path="/solution" component={Solution}/>
+            <ProtectedRoute path="/userprofile" component={UserProfile}/>
             <ProtectedRoute path="/edit/:_id" component={EditProblem}/>
             <AdminProtectedRoute path="/newproblem" component={NewProblemPage}/>
             <AdminProtectedRoute path="/users" component={StudentDatabase}/>
