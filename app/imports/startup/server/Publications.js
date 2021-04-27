@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Problems } from '../../api/problem/Problems';
-import { Notes } from '../../api/note/Notes';
 
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
@@ -9,14 +8,6 @@ Meteor.publish(Problems.userPublicationName, function () {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
     return Problems.collection.find({ owner: username });
-  }
-  return this.ready();
-});
-
-Meteor.publish(Notes.userPublicationName, function () {
-  if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Notes.collection.find({ owner: username });
   }
   return this.ready();
 });

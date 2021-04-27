@@ -17,6 +17,8 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
+import PPU from '../pages/PPU';
+import Solution from '../pages/Solution';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -33,6 +35,8 @@ class App extends React.Component {
             <ProtectedRoute path="/problem" component={ProblemPage}/>
             <ProtectedRoute path="/leaderboard" component={Leaderboard}/>
             <ProtectedRoute path="/profilepage" component={ProfilePage}/>
+            <ProtectedRoute path="/PPU" component={PPU}/>
+            <ProtectedRoute path="/solution" component={Solution}/>
             <ProtectedRoute path="/edit/:_id" component={EditProblem}/>
             <AdminProtectedRoute path="/newproblem" component={ProblemPageAdmin}/>
             <AdminProtectedRoute path="/users" component={StudentDatabase}/>

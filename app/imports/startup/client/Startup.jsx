@@ -10,5 +10,4 @@ Meteor.startup(() => {
   render(<App />, document.getElementById('root'));
 });
 
-Meteor.startup(() =>  document.body.classList.add('uh-code-submissions-background'));
-
+Meteor.startup(() => document.body.classList.add('uh-code-submissions-background'));

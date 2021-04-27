@@ -1,13 +1,13 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import Problem from '../components/Problem';
+import ProblemAdmin from '../components/Problem';
 import { Problems } from '../../api/problem/Problems';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class ProblemPage extends React.Component {
+class PPU extends React.Component {
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
@@ -18,8 +18,9 @@ class ProblemPage extends React.Component {
   renderPage() {
     return (
       <Container>
+        <Header as="h2" textAlign="center" inverted>List Problems</Header>
         <Card.Group>
-          {this.props.problems.map((problem, index) => <Problem
+          {this.props.problems.map((problem, index) => <ProblemAdmin
             key={index}
             problem={problem}
           />)}
@@ -30,7 +31,7 @@ class ProblemPage extends React.Component {
 }
 
 // Require an array of Stuff documents in the props.
-ProblemPage.propTypes = {
+PPU.propTypes = {
   problems: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -47,4 +48,4 @@ export default withTracker(() => {
     problems,
     ready,
   };
-})(ProblemPage);
+})(PPU);
