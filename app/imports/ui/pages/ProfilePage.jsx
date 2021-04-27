@@ -40,7 +40,7 @@ class ProfilePage extends React.Component {
     return (
       <Grid container centered>
         <Grid.Column>
-          <Header as="h2" textAlign="center" inverted>ProfilePage</Header>
+          <Header as="h2" textAlign="center" inverted>Profile Page</Header>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
             <Segment>
               <TextField name='title'/>
