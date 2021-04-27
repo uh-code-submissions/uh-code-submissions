@@ -6,8 +6,7 @@ import { Problems } from '../../api/problem/Problems';
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
 Meteor.publish(Problems.userPublicationName, function () {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Problems.collection.find({ owner: username });
+    return Problems.collection.find();
   }
   return this.ready();
 });

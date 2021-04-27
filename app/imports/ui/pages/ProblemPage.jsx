@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Problem from '../components/Problem';
@@ -18,7 +18,8 @@ class ProblemPage extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Card.Group>
+        <Header as="h2" textAlign="center" inverted>List Problems</Header>
+        <Card.Group centered>
           {this.props.problems.map((problem, index) => <Problem
             key={index}
             problem={problem}

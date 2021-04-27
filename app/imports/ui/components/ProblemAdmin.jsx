@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class ProblemAdmin extends React.Component {
@@ -14,9 +14,10 @@ class ProblemAdmin extends React.Component {
           <Card.Description>
             {this.props.problem.description}
           </Card.Description>
-        </Card.Content>
-        <Card.Content>
-          {this.props.problem.owner}
+          <Card.Content extra>
+            <Link to={`/edit/${this.props.problem._id}`}>Edit</Link>
+          </Card.Content>
+
         </Card.Content>
       </Card>
     );

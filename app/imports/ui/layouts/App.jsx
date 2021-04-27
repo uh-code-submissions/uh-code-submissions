@@ -7,7 +7,7 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
-import ProblemPageAdmin from '../pages/ProblemPageAdmin';
+import NewProblemPage from '../pages/NewProblemPage';
 import StudentDatabase from '../pages/StudentDatabase';
 import ProblemPage from '../pages/ProblemPage';
 import Leaderboard from '../pages/Leaderboard';
@@ -17,7 +17,7 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
-import PPU from '../pages/PPU';
+import ProblemPageAdmin from '../pages/ProblemPageAdmin';
 import Solution from '../pages/Solution';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
@@ -32,14 +32,14 @@ class App extends React.Component {
             <Route path="/signin" component={Signin}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/signout" component={Signout}/>
-            <ProtectedRoute path="/problem" component={ProblemPage}/>
+            <ProtectedRoute path="/problempage" component={ProblemPage}/>
             <ProtectedRoute path="/leaderboard" component={Leaderboard}/>
             <ProtectedRoute path="/profilepage" component={ProfilePage}/>
-            <ProtectedRoute path="/PPU" component={PPU}/>
             <ProtectedRoute path="/solution" component={Solution}/>
             <ProtectedRoute path="/edit/:_id" component={EditProblem}/>
-            <AdminProtectedRoute path="/newproblem" component={ProblemPageAdmin}/>
+            <AdminProtectedRoute path="/newproblem" component={NewProblemPage}/>
             <AdminProtectedRoute path="/users" component={StudentDatabase}/>
+            <AdminProtectedRoute path="/problempageadmin" component={ProblemPageAdmin}/>
             <Route component={NotFound}/>
           </Switch>
           <Footer/>
