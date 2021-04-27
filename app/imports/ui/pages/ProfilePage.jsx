@@ -26,36 +26,36 @@ class ProfilePage extends React.Component {
     const { firstName, lastName, address, image, description } = data;
     const owner = Meteor.user().username;
     Contacts.collection.insert({ firstName, lastName, address, image, description, owner },
-        (error) => {
-          if (error) {
-            swal('Error', error.message, 'error');
-          } else {
-            swal('Success', 'Item added successfully', 'success');
-            formRef.reset();
-          }
-        });
+      (error) => {
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          swal('Success', 'Item added successfully', 'success');
+          formRef.reset();
+        }
+      });
   }
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   render() {
     let fRef = null;
     return (
-        <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center" inverted>Profile Page</Header>
-            <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
-              <Segment>
-                <TextField name='firstName'/>
-                <TextField name='lastName'/>
-                <TextField name='address'/>
-                <TextField name='image'/>
-                <LongTextField name='description'/>
-                <SubmitField value='Submit'/>
-                <ErrorsField/>
-              </Segment>
-            </AutoForm>
-          </Grid.Column>
-        </Grid>
+      <Grid container centered>
+        <Grid.Column>
+          <Header as="h2" textAlign="center" inverted>Profile Page</Header>
+          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
+            <Segment>
+              <TextField name='firstName'/>
+              <TextField name='lastName'/>
+              <TextField name='address'/>
+              <TextField name='image'/>
+              <LongTextField name='description'/>
+              <SubmitField value='Submit'/>
+              <ErrorsField/>
+            </Segment>
+          </AutoForm>
+        </Grid.Column>
+      </Grid>
     );
   }
 }
