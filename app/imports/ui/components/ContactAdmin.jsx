@@ -17,9 +17,10 @@ class ContactAdmin extends React.Component {
           <Card.Header>{this.props.contact.firstName} {this.props.contact.lastName}</Card.Header>
           <Card.Meta>{this.props.contact.address}</Card.Meta>
           <Card.Description>
-            {this.props.contact.description}          </Card.Description>
+            {this.props.contact.description}
+          </Card.Description>
         </Card.Content>
-        <Card.Content>
+        <Card.Content extra>
           {this.props.contact.owner}
         </Card.Content>
       </Card>

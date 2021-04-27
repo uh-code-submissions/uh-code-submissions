@@ -3,11 +3,12 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import ContactAdmin from '../components/ContactAdmin';
+import Contact from '../components/Contact';
 import { Contacts } from '../../api/contact/Contacts';
+import { Notes } from '../../api/note/Notes';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class ListContactsAdmin extends React.Component {
+class ListContacts extends React.Component {
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
@@ -18,9 +19,12 @@ class ListContactsAdmin extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Header as="h2" textAlign="center" inverted>List Contacts (Admin)</Header>
+        <Header as="h2" textAlign="center" inverted>List Contacts</Header>
         <Card.Group>
-          {this.props.contacts.map((contact, index) => <ContactAdmin key={index} contact={contact} />)}
+          {this.props.contacts.map((contact, index) => <Contact
+            key={index}
+            contact={contact}
+            notes={this.props.notes.filter(note => (note.contactId === contact._id))}/>)}
         </Card.Group>
       </Container>
     );
@@ -28,21 +32,25 @@ class ListContactsAdmin extends React.Component {
 }
 
 // Require an array of Stuff documents in the props.
-ListContactsAdmin.propTypes = {
+ListContacts.propTypes = {
   contacts: PropTypes.array.isRequired,
+  notes: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Contacts.adminPublicationName);
+  const subscription = Meteor.subscribe(Contacts.userPublicationName);
+  const subscription2 = Meteor.subscribe(Notes.userPublicationName);
   // Determine if the subscription is ready
-  const ready = subscription.ready();
+  const ready = subscription.ready() && subscription2.ready();
   // Get the Stuff documents
   const contacts = Contacts.collection.find({}).fetch();
+  const notes = Notes.collection.find({}).fetch();
   return {
     contacts,
     ready,
+    notes,
   };
-})(ListContactsAdmin);
+})(ListContacts);

@@ -13,8 +13,8 @@ class AddNote extends React.Component {
 
   // On submit, insert the data.
   submit(data, formRef) {
-    const { note, owner, contactId, createdAt } = data;
-    Notes.collection.insert({ note, owner, contactId, createdAt },
+    const { note, owner, problemId, createdAt } = data;
+    Notes.collection.insert({ note, owner, problemId, createdAt },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -35,7 +35,7 @@ class AddNote extends React.Component {
           <SubmitField value='Submit'/>
           <ErrorsField/>
           <HiddenField name='owner' value={this.props.owner}/>
-          <HiddenField name='contactId' value={this.props.contactId}/>
+          <HiddenField name='problemId' value={this.props.problemId}/>
           <HiddenField name='createdAt' value={new Date()}/>
         </Segment>
       </AutoForm>
@@ -45,7 +45,7 @@ class AddNote extends React.Component {
 
 AddNote.propTypes = {
   owner: PropTypes.string.isRequired,
-  contactId: PropTypes.string.isRequired,
+  problemId: PropTypes.string.isRequired,
 };
 
 export default AddNote;

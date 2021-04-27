@@ -3,8 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import Contact from '../components/Contact';
-import { Contacts } from '../../api/contact/Contacts';
+import Problem from '../components/Problem';
+import { Problems } from '../../api/problem/Problems';
 import { Notes } from '../../api/note/Notes';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -19,12 +19,11 @@ class ProblemPage extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Header as="h2" textAlign="center" inverted>List Contacts</Header>
         <Card.Group>
-          {this.props.contacts.map((contact, index) => <Contact
+          {this.props.problems.map((problem, index) => <Problem
             key={index}
-            contact={contact}
-            notes={this.props.notes.filter(note => (note.contactId === contact._id))}/>)}
+            problem={problem}
+            notes={this.props.notes.filter(note => (note.problemId === problem._id))}/>)}
         </Card.Group>
       </Container>
     );
@@ -33,7 +32,7 @@ class ProblemPage extends React.Component {
 
 // Require an array of Stuff documents in the props.
 ProblemPage.propTypes = {
-  contacts: PropTypes.array.isRequired,
+  problems: PropTypes.array.isRequired,
   notes: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -41,15 +40,15 @@ ProblemPage.propTypes = {
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Contacts.userPublicationName);
+  const subscription = Meteor.subscribe(Problems.userPublicationName);
   const subscription2 = Meteor.subscribe(Notes.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready() && subscription2.ready();
   // Get the Stuff documents
-  const contacts = Contacts.collection.find({}).fetch();
+  const problems = Problems.collection.find({}).fetch();
   const notes = Notes.collection.find({}).fetch();
   return {
-    contacts,
+    problems,
     ready,
     notes,
   };
