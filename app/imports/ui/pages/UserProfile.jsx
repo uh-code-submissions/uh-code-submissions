@@ -3,9 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card, Image, Icon } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import Contact from '../components/Contact';
 import { Contacts } from '../../api/contact/Contacts';
-import { Notes } from '../../api/note/Notes';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class UserProfile extends React.Component {
@@ -53,7 +51,6 @@ class UserProfile extends React.Component {
 // Require an array of Stuff documents in the props.
 UserProfile.propTypes = {
   contacts: PropTypes.array.isRequired,
-  notes: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -61,15 +58,12 @@ UserProfile.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe(Contacts.userPublicationName);
-  const subscription2 = Meteor.subscribe(Notes.userPublicationName);
   // Determine if the subscription is ready
-  const ready = subscription.ready() && subscription2.ready();
+  const ready = subscription.ready();
   // Get the Stuff documents
   const contacts = Contacts.collection.find({}).fetch();
-  const notes = Notes.collection.find({}).fetch();
   return {
     contacts,
     ready,
-    notes,
   };
 })(UserProfile);

@@ -19,6 +19,7 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ProblemPageAdmin from '../pages/ProblemPageAdmin';
 import Solution from '../pages/Solution';
+import UserProfile from '../pages/UserProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
