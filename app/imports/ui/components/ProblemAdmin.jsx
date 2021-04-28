@@ -17,7 +17,6 @@ class ProblemAdmin extends React.Component {
           <Card.Content extra>
             <Link to={`/edit/${this.props.problem._id}`}>Edit</Link>
           </Card.Content>
-
         </Card.Content>
       </Card>
     );

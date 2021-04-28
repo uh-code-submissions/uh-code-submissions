@@ -24,7 +24,7 @@ class UserProfile extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Header as="h2" textAlign="center" inverted>List Contacts</Header>
+        <Header as="h2" textAlign="center">List Contacts</Header>
         <Card>
           <Image src='/images/avatar/large/matthew.png' wrapped ui={false} />
           <Card.Content>

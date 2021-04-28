@@ -18,7 +18,7 @@ class ProblemPage extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Header as="h2" textAlign="center" inverted>List Problems</Header>
+        <Header as="h2" textAlign="center">List Problems</Header>
         <Card.Group centered>
           {this.props.problems.map((problem, index) => <Problem
             key={index}

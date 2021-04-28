@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Loader, Card } from 'semantic-ui-react';
+import { Container, Loader, Card, Header } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import ProblemAdmin from '../components/ProblemAdmin';
@@ -18,7 +18,8 @@ class ProblemPageAdmin extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Card.Group>
+        <Header as="h2" textAlign="center">Problems</Header>
+        <Card.Group centered>
           {this.props.problems.map((problem, index) => <ProblemAdmin
             key={index}
             problem={problem}

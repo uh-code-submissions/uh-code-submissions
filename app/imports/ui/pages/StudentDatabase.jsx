@@ -18,7 +18,7 @@ class StudentDatabase extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Header as="h2" textAlign="center" inverted>Students</Header>
+        <Header as="h2" textAlign="center">Students</Header>
         <Card.Group>
           {this.props.problems.map((problem, index) => <problemAdmin key={index} problem={problem} />)}
         </Card.Group>
