@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import Contact from '../components/Contact.jsx';
 import { Contacts } from '../../api/contact/Contacts';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
