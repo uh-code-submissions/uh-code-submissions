@@ -18,7 +18,15 @@
     "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
     "bio": "Hi, my name is Panda. I am a Panda officer at University of Hawaii at Manoa. I am pursuing a degree in Computer Science, and I frequently work with Bamboo.",
     "owner": "john@foo.com"
-  }
+  },
+    {
+      "name": "Teacher Panda",
+      "username": "panda808",
+      "rating": "5.0",
+      "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
+      "bio": "Hi, my name is Panda. I am a Panda teacher at University of Hawaii at Manoa. I am pursuing a degree in Computer Science, and I frequently work with Bamboo.",
+      "owner": "admin@foo.com"
+    }
   ],
   "monti": {
     "appId": "KDpmgMo4JroRNkgi9",
