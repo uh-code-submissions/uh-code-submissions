@@ -2,6 +2,7 @@ import { landingPage } from './landing.page';
 import { signinPage } from './signin.page';
 import { signoutPage } from './signout.page';
 import { navBar } from './navbar.component';
+import { userprofilePage } from './userprofile.page';
 
 /* global fixture:false, test:false */
 
@@ -27,7 +28,6 @@ test('Test user profile page', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.isLoggedIn(testController, credentials.username);
-  await navBar;
-  await navBar.logout(testController);
-  await signoutPage.isDisplayed(testController);
+  await navBar.gotoUserProfilePage(testController);
+  await userprofilePage.isDisplayed(testController);
 });
