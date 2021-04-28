@@ -39,6 +39,10 @@ class NavBar {
   async gotoUserProfilePage(testController) {
     await testController.click('#userprofile');
   }
+
+  async gotoProblemPage(testController) {
+    await testController.click('#problempage');
+  }
 }
 
 export const navBar = new NavBar();

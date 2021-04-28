@@ -17,7 +17,7 @@ class ProblemPage extends React.Component {
   // Render the page once subscriptions have been received.
   renderPage() {
     return (
-      <Container>
+      <Container id='problem-page'>
         <Header as="h2" textAlign="center">List Problems</Header>
         <Card.Group centered>
           {this.props.problems.map((problem, index) => <Problem
