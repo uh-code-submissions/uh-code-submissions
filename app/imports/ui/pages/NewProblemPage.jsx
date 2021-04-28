@@ -38,15 +38,15 @@ class NewProblemPage extends React.Component {
   render() {
     let fRef = null;
     return (
-      <Grid container centered>
+      <Grid container centered id='add-problem-page'>
         <Grid.Column>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
             <Segment>
               <Header as="h2" textAlign="center">Add a New Problem</Header>
-              <TextField name='title'/>
-              <TextField name='category'/>
-              <LongTextField name='description'/>
-              <SubmitField value='Submit'/>
+              <TextField name='title' id='title-form'/>
+              <TextField name='category' id='category-form'/>
+              <LongTextField name='description' id='desc-form'/>
+              <SubmitField value='Submit' id='problem-form-submit'/>
               <ErrorsField/>
             </Segment>
           </AutoForm>

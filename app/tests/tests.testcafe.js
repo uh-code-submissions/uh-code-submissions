@@ -5,12 +5,14 @@ import { navBar } from './navbar.component';
 import { userprofilePage } from './userprofile.page';
 import { problemPage } from './problem.page';
 import { adminProblemPage } from './adminproblem.page';
+import { addProblemPage } from './addproblem.page';
 
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const adminCred = { username: 'admin@foo.com', password: 'changeme' };
+const exProblem = { title: 'Problem', category: 'Scary', description: 'A scary problem' };
 
 fixture('meteor-application-template-react localhost test with default db')
   .page('http://localhost:3000');
@@ -57,4 +59,12 @@ test('Test admin problem page', async (testController) => {
   await navBar.isLoggedIn(testController, adminCred.username);
   await navBar.gotoAdminProblemPage(testController);
   await adminProblemPage.isDisplayed(testController);
+});
+
+test('Test admin add new problem page', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, adminCred.username, adminCred.password);
+  await navBar.isLoggedIn(testController, adminCred.username);
+  await navBar.gotoAddProblemPage(testController);
+  await addProblemPage.isDisplayed(testController);
 });
