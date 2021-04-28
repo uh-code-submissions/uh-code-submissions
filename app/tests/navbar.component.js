@@ -43,6 +43,10 @@ class NavBar {
   async gotoProblemPage(testController) {
     await testController.click('#problempage');
   }
+
+  async gotoAdminProblemPage(testController) {
+    await testController.click('#problempageadmin');
+  }
 }
 
 export const navBar = new NavBar();

@@ -9,8 +9,8 @@ import { Problems } from '../../api/problem/Problems';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ProblemPageAdmin extends React.Component {
 
-render() {
-  return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
   // On submit, insert the data.
@@ -31,7 +31,7 @@ render() {
   // Render the page once subscriptions have been received.
   renderPage() {
     return (
-      <Container>
+      <Container id='admin-problem-page'>
         <Header as="h2" textAlign="center">Problems</Header>
         <Card.Group centered>
           {this.props.problems.map((problem, index) => <ProblemAdmin
