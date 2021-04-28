@@ -13,7 +13,7 @@ class Landing extends React.Component {
             <Grid.Column width={8}>
               <h1 className="main-title">Welcome to UH Code Submissions!</h1>
               <Header as='h4' inverted>A platform to prepare for technical interviews with challenging problems and quick feedback.</Header>
-              <Header as='h4' inverted>In conjunction with PANDA, Programing and Algorithms Club!</Header>
+              <Header as='h4' inverted>In conjunction with PANDA, Programming and Algorithms Club!</Header>
             </Grid.Column>
           </Grid.Row>
           <Image src='https://raw.githubusercontent.com/uh-code-submissions/uh-code-submissions/main/app/public/images/Panda.png' className="ui large image" centered />

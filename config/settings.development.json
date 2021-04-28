@@ -5,10 +5,20 @@
   ],
 
   "defaultProblems": [{
-    "title": "Philip", "category": "POST 307, University of Hawaii",
+    "title": "Two Sum", "category": "Arrays",
     "owner": "admin@foo.com",
-    "description": "I am a Professor of Information and Computer Sciences at the University of Hawaii, Director of the Collaborative Software Development Laboratory, and the CEO of OpenPowerQuality.com."
-  }
+    "description": "Given an array of integers and a key, return True if there are two values within the array that add up to the key. Return False otherwise."
+  },
+    {
+      "title": "Knapsack", "category": "Dynamic Programming",
+      "owner": "admin@foo.com",
+      "description": "Given the weights and values of n items and a capacity W of a sack. Find the maximum value of items to put in the sack without going over capacity."
+    },
+    {
+      "title": "Sudoku Solver", "category": "Recursion",
+      "owner": "admin@foo.com",
+      "description": "Given an unfinished sudoku puzzle, output a correctly solved sudoku puzzle."
+    }
   ],
 
   "defaultContacts": [{
