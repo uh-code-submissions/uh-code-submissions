@@ -5,17 +5,9 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Contact from '../components/Contact';
 import { Contacts } from '../../api/contact/Contacts';
-import { Notes } from '../../api/note/Notes';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class UserProfile extends React.Component {
-  contacts = [{
-    firstName: 'Philip', lastName: 'Johnson', address: 'POST 307, University of Hawaii',
-    image: 'https://philipmjohnson.github.io/images/philip2.jpeg',
-    description: 'I am a Professor of Information and Computer Sciences at the University of Hawaii, Director ' +
-        'of the Collaborative Software Development Laboratory, and the CEO of OpenPowerQuality.com.',
-  },
-  ];
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
@@ -26,25 +18,10 @@ class UserProfile extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Header as="h2" textAlign="center" inverted>List Contacts</Header>
-        <Card>
-          <Image src='/images/avatar/large/matthew.png' wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>this.contacts.firstName</Card.Header>
-            <Card.Meta>
-              <span className='date'>Joined in 2015</span>
-            </Card.Meta>
-            <Card.Description>
-              Matthew is a musician living in Nashville.
-            </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <a>
-              <Icon name='user' />
-              22 Friends
-            </a>
-          </Card.Content>
-        </Card>
+        <Header as="h2" textAlign="center" >User Profile</Header>
+        <Card.Group>
+          {this.props.contacts.map((contact, index) => <Contact key={index} contact={contact}/>)}
+        </Card.Group>
       </Container>
     );
   }
@@ -53,7 +30,6 @@ class UserProfile extends React.Component {
 // Require an array of Stuff documents in the props.
 UserProfile.propTypes = {
   contacts: PropTypes.array.isRequired,
-  notes: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -61,15 +37,12 @@ UserProfile.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe(Contacts.userPublicationName);
-  const subscription2 = Meteor.subscribe(Notes.userPublicationName);
   // Determine if the subscription is ready
-  const ready = subscription.ready() && subscription2.ready();
+  const ready = subscription.ready();
   // Get the Stuff documents
   const contacts = Contacts.collection.find({}).fetch();
-  const notes = Notes.collection.find({}).fetch();
   return {
     contacts,
     ready,
-    notes,
   };
 })(UserProfile);

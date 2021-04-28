@@ -10,6 +10,16 @@
     "description": "I am a Professor of Information and Computer Sciences at the University of Hawaii, Director of the Collaborative Software Development Laboratory, and the CEO of OpenPowerQuality.com."
   }
   ],
+
+  "defaultContacts": [{
+    "name": "Big Panda",
+    "username": "panda142",
+    "rating": "5.0",
+    "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
+    "bio": "Hi, my name is Panda. I am a Panda officer at University of Hawaii at Manoa. I am pursuing a degree in Computer Science, and I frequently work with Bamboo.",
+    "owner": "john@foo.com"
+  }
+  ],
   "monti": {
     "appId": "KDpmgMo4JroRNkgi9",
     "appSecret": "8182c07a-d86f-4460-aa76-3f448b24d973"

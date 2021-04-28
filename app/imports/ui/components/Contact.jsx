@@ -10,14 +10,14 @@ class Contact extends React.Component {
       <Card>
         <Card.Content>
           <Image
-            floated='right'
-            size='mini'
+            floated='left'
+            size='large'
             src={this.props.contact.image}
           />
-          <Card.Header>{this.props.contact.firstName} {this.props.contact.lastName}</Card.Header>
-          <Card.Meta>{this.props.contact.address}</Card.Meta>
+          <Card.Header>{this.props.contact.name}</Card.Header>
+          <Card.Meta>{this.props.contact.username}</Card.Meta>
           <Card.Description>
-            {this.props.contact.description}
+            {this.props.contact.bio} Rating: {this.props.contact.rating}
           </Card.Description>
         </Card.Content>
       </Card>
