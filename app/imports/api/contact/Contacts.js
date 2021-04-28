@@ -29,7 +29,7 @@ class ContactsCollection {
 }
 
 /**
- * The singleton instance of the StuffsCollection.
- * @type {StuffsCollection}
+ * The singleton instance of the ContactsCollection.
+ * @type {ContactsCollection}
  */
 export const Contacts = new ContactsCollection();

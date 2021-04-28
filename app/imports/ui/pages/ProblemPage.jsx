@@ -5,7 +5,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Problem from '../components/Problem';
 import { Problems } from '../../api/problem/Problems';
-import { Notes } from '../../api/note/Notes';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ProblemPage extends React.Component {
@@ -23,7 +22,7 @@ class ProblemPage extends React.Component {
           {this.props.problems.map((problem, index) => <Problem
             key={index}
             problem={problem}
-            notes={this.props.notes.filter(note => (note.problemId === problem._id))}/>)}
+          />)}
         </Card.Group>
       </Container>
     );
@@ -33,7 +32,6 @@ class ProblemPage extends React.Component {
 // Require an array of Stuff documents in the props.
 ProblemPage.propTypes = {
   problems: PropTypes.array.isRequired,
-  notes: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -41,15 +39,12 @@ ProblemPage.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe(Problems.userPublicationName);
-  const subscription2 = Meteor.subscribe(Notes.userPublicationName);
   // Determine if the subscription is ready
-  const ready = subscription.ready() && subscription2.ready();
+  const ready = subscription.ready();
   // Get the Stuff documents
   const problems = Problems.collection.find({}).fetch();
-  const notes = Notes.collection.find({}).fetch();
   return {
     problems,
     ready,
-    notes,
   };
 })(ProblemPage);

@@ -2,8 +2,6 @@ import React from 'react';
 import { Card, Feed, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import Note from './Note';
-import AddNote from './AddNote';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Problem extends React.Component {
@@ -21,12 +19,6 @@ class Problem extends React.Component {
 
         </Card.Content>
         <Card.Content extra>
-          <Feed>
-            {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
-          </Feed>
-        </Card.Content>
-        <Card.Content extra>
-          <AddNote owner={this.props.problem.owner} problemId={this.props.problem._id}/>
         </Card.Content>
       </Card>
     );
@@ -36,7 +28,6 @@ class Problem extends React.Component {
 // Require a document to be passed to this component.
 Problem.propTypes = {
   problem: PropTypes.object.isRequired,
-  notes: PropTypes.array.isRequired,
 };
 
 // Wrap this component in withRouter since we use the <Link> React Router element.
