@@ -9,9 +9,23 @@ import { Problems } from '../../api/problem/Problems';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ProblemPageAdmin extends React.Component {
 
-  // If the subscription(s) have been received, render the page, otherwise show a loading icon.
-  render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+render() {
+  return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  }
+
+  // On submit, insert the data.
+  submit(data, formRef) {
+    const { title, category, description } = data;
+    const owner = Meteor.user().username;
+    Problems.collection.insert({ title, category, description, owner },
+      (error) => {
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          swal('Success', 'Item added successfully', 'success');
+          formRef.reset();
+        }
+      });
   }
 
   // Render the page once subscriptions have been received.
