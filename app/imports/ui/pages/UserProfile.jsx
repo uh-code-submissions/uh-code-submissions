@@ -17,7 +17,7 @@ class UserProfile extends React.Component {
   // Render the page once subscriptions have been received.
   renderPage() {
     return (
-      <Container>
+      <Container id='userprofile-page'>
         <Header as="h2" textAlign="center" >User Profile</Header>
         <Card.Group>
           {this.props.contacts.map((contact, index) => <Contact key={index} contact={contact}/>)}
