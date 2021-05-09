@@ -52,6 +52,7 @@ export default class Signin extends React.Component {
                     Login
                   </Header>
                   <Form.Input
+                    required
                     label="Email"
                     id="signin-form-email"
                     icon="user"
@@ -62,6 +63,7 @@ export default class Signin extends React.Component {
                     onChange={this.handleChange}
                   />
                   <Form.Input
+                    required
                     label="Password"
                     id="signin-form-password"
                     icon="lock"
