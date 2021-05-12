@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment, Form } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import {
   AutoForm,
