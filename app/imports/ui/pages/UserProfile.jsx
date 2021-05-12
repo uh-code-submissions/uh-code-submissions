@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid, Icon } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Contact from '../components/Contact.jsx';
@@ -19,9 +19,23 @@ class UserProfile extends React.Component {
     return (
       <Container id='userprofile-page'>
         <Header as="h2" textAlign="center" >My Profile</Header>
-        <Card.Group>
-          {this.props.contacts.map((contact, index) => <Contact key={index} contact={contact}/>)}
-        </Card.Group>
+        <Grid centered columns={3}>
+          <Grid.Column textAlign='center'>
+            <Card.Group>
+              {this.props.contacts.map((contact, index) => <Contact key={index} contact={contact}/>)}
+            </Card.Group>
+          </Grid.Column>
+          <Grid.Column>
+            <Header as='h3' color="grey">
+              <Icon name="student" size="large"/> Classes Taken:
+            </Header>
+          </Grid.Column>
+          <Grid.Column>
+            <Header as='h3' color="grey">
+              <Icon name="student" size="large"/> Submitted Solutions:
+            </Header>
+          </Grid.Column>
+        </Grid>
       </Container>
     );
   }
