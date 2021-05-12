@@ -8,7 +8,6 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import NewProblemPage from '../pages/NewProblemPage';
-import StudentDatabase from '../pages/StudentDatabase';
 import ProblemPage from '../pages/ProblemPage';
 import Leaderboard from '../pages/Leaderboard';
 import ProfilePage from '../pages/ProfilePage';
@@ -45,7 +44,6 @@ class App extends React.Component {
             <ProtectedRoute path="/edit/:_id" component={EditProblem}/>
             <ProtectedRoute path="/adminprofile" component={AdminProfile}/>
             <AdminProtectedRoute path="/newproblem" component={NewProblemPage}/>
-            <AdminProtectedRoute path="/users" component={StudentDatabase}/>
             <AdminProtectedRoute path="/problempageadmin" component={ProblemPageAdmin}/>
             <Route component={NotFound}/>
           </Switch>
