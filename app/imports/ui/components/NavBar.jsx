@@ -15,16 +15,17 @@ class NavBar extends React.Component {
         <Menu.Item as={NavLink} activeClassName="" exact to="/">
           <Header inverted as='h1'>UH Code Submissions</Header>
         </Menu.Item>
-        {this.props.currentUser ? (
-          [
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/userprofile" key='userprofile' id="userprofile">My Profile</Menu.Item>,
-          ]
+        {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
+          <Menu.Item as={NavLink} activeClassName="active" exact to="/adminprofile" key='adminprofile' id="admin">My Profile</Menu.Item>
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
           <Menu.Item as={NavLink} activeClassName="active" exact to="/problempageadmin" key='problempageadmin' id="problempageadmin">Problem Page</Menu.Item>
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
           <Menu.Item as={NavLink} activeClassName="active" exact to="/newproblem" key='newproblem' id="addproblempage">Add New Problem</Menu.Item>
+        ) : ''}
+        {!Roles.userIsInRole(Meteor.userId(), 'admin') && this.props.currentUser !== '' ? (
+          <Menu.Item as={NavLink} activeClassName="active" exact to="/userprofile" key='userprofile' id="userprofile">My Profile</Menu.Item>
         ) : ''}
         {!Roles.userIsInRole(Meteor.userId(), 'admin') && this.props.currentUser !== '' ? (
           <Menu.Item as={NavLink} activeClassName="active" exact to="/problempage" key='problempage' id="problempage">Problem Page</Menu.Item>
