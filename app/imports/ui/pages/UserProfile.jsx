@@ -18,7 +18,7 @@ class UserProfile extends React.Component {
   renderPage() {
     return (
       <Container id='userprofile-page'>
-        <Header as="h2" textAlign="center" >User Profile</Header>
+        <Header as="h2" textAlign="center" >My Profile</Header>
         <Card.Group>
           {this.props.contacts.map((contact, index) => <Contact key={index} contact={contact}/>)}
         </Card.Group>

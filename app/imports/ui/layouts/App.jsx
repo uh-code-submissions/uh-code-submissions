@@ -20,6 +20,7 @@ import Signout from '../pages/Signout';
 import ProblemPageAdmin from '../pages/ProblemPageAdmin';
 import Solution from '../pages/Solution';
 import UserProfile from '../pages/UserProfile';
+import EditProfile from '../pages/EditProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -36,6 +37,7 @@ class App extends React.Component {
             <ProtectedRoute path="/problempage" component={ProblemPage}/>
             <ProtectedRoute path="/leaderboard" component={Leaderboard}/>
             <ProtectedRoute path="/profilepage" component={ProfilePage}/>
+            <ProtectedRoute path="/editprofile/:_id" component={EditProfile}/>
             <ProtectedRoute path="/solution" component={Solution}/>
             <ProtectedRoute path="/userprofile" component={UserProfile}/>
             <ProtectedRoute path="/edit/:_id" component={EditProblem}/>

@@ -9,11 +9,9 @@ import { Contacts } from '../../api/contact/Contacts';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
-  firstName: String,
-  lastName: String,
-  address: String,
+  name: String,
   image: String,
-  description: String,
+  bio: String,
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
@@ -23,9 +21,9 @@ class AddContact extends React.Component {
 
   // On submit, insert the data.
   submit(data, formRef) {
-    const { firstName, lastName, address, image, description } = data;
+    const { name, image, bio } = data;
     const owner = Meteor.user().username;
-    Contacts.collection.insert({ firstName, lastName, address, image, description, owner },
+    Contacts.collection.insert({ name, image, bio, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -42,14 +40,12 @@ class AddContact extends React.Component {
     return (
       <Grid container centered>
         <Grid.Column>
-          <Header as="h2" textAlign="center" inverted>Add Contact</Header>
+          <Header as="h2" textAlign="center" inverted>Add Profile</Header>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
             <Segment>
-              <TextField name='firstName'/>
-              <TextField name='lastName'/>
-              <TextField name='address'/>
+              <TextField name='name'/>
               <TextField name='image'/>
-              <LongTextField name='description'/>
+              <LongTextField name='bio'/>
               <SubmitField value='Submit'/>
               <ErrorsField/>
             </Segment>

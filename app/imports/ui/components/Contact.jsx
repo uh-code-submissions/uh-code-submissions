@@ -1,26 +1,35 @@
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import { Card, Image, Grid, Icon, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Contact extends React.Component {
   render() {
+    const leftGrid = { marginLeft: '20px' };
     return (
-      <Card>
-        <Card.Content>
-          <Image
-            floated='left'
-            size='large'
-            src={this.props.contact.image}
-          />
-          <Card.Header>{this.props.contact.name}</Card.Header>
-          <Card.Meta>{this.props.contact.username}</Card.Meta>
-          <Card.Description>
-            {this.props.contact.bio} Rating: {this.props.contact.rating}
-          </Card.Description>
-        </Card.Content>
-      </Card>
+      <Grid.Column textAlign='center' floated="left" width={5} style={leftGrid}>
+        <Card>
+          <Card.Content>
+            <Image
+              floated='left'
+              size='large'
+              src={this.props.contact.image}
+            />
+            <Card.Header>{this.props.contact.name}</Card.Header>
+            <Card.Meta>{this.props.contact.username}</Card.Meta>
+            <Card.Description>
+              {this.props.contact.bio}
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <a>
+              <Icon name='heart'/> Rating: {this.props.contact.rating}
+            </a>
+          </Card.Content>
+          <Label active color='grey' size='big'><Link to={`/editprofile/${this.props.contact._id}`} id="editUserButton">Edit Profile</Link></Label>
+        </Card>
+      </Grid.Column>
     );
   }
 }

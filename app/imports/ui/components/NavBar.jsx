@@ -16,9 +16,9 @@ class NavBar extends React.Component {
           <Header inverted as='h1'>UH Code Submissions</Header>
         </Menu.Item>
         {this.props.currentUser ? (
-          [<Menu.Item as={NavLink} activeClassName="active" exact to="/profilepage" key='profilepage'>Profile Page</Menu.Item>,
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/userprofile" key='userprofile' id="userprofile">User Profile</Menu.Item>,
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/leaderboard" key='leaderboard'>Leaderboard</Menu.Item>]
+          [
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/userprofile" key='userprofile' id="userprofile">My Profile</Menu.Item>,
+          ]
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
           <Menu.Item as={NavLink} activeClassName="active" exact to="/problempageadmin" key='problempageadmin' id="problempageadmin">Problem Page</Menu.Item>
@@ -34,8 +34,8 @@ class NavBar extends React.Component {
         ) : ''}
         <Menu.Item position="right">
           {this.props.currentUser === '' ? (
-            [<Menu.Item id="login-sign-in" icon="user" text="Sign In" as={NavLink} exact to="/signin" key='login'>Sign in</Menu.Item>,
-              <Menu.Item id="login-sign-up" icon="add user" text="Sign Up" as={NavLink} exact to="/signup" key='signup'>Sign Up</Menu.Item>]
+            [<Menu.Item id="login-sign-in" text="Sign In" as={NavLink} exact to="/signin" key='login'>Sign in</Menu.Item>,
+              <Menu.Item id="login-sign-up" text="Sign Up" as={NavLink} exact to="/signup" key='signup'>Sign Up</Menu.Item>]
           ) : (
             <Dropdown id="navbar-current-user" text={this.props.currentUser} pointing="top right" icon={'user'}>
               <Dropdown.Menu>

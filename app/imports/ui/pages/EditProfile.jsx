@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment, Form } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import {
   AutoForm,
@@ -18,12 +18,12 @@ import { Contacts } from '../../api/contact/Contacts';
 const bridge = new SimpleSchema2Bridge(Contacts.schema);
 
 /** Renders the Page for editing a single document. */
-class EditContact extends React.Component {
+class EditProfile extends React.Component {
 
   // On successful submit, insert the data.
   submit(data) {
-    const { firstName, lastName, address, image, description, _id } = data;
-    Contacts.collection.update(_id, { $set: { firstName, lastName, address, image, description } }, (error) => (error ?
+    const { name, image, bio, _id } = data;
+    Contacts.collection.update(_id, { $set: { name, image, bio } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   }
@@ -36,17 +36,15 @@ class EditContact extends React.Component {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
     return (
-      <Grid container centered>
+      <Grid container centered id="userEdit-Page">
         <Grid.Column>
-          <Header as="h2" textAlign="center" inverted>Edit Stuff</Header>
+          <Header as="h2" textAlign="center">Edit Profile</Header>
           <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
             <Segment>
-              <TextField name='firstName'/>
-              <TextField name='lastName'/>
-              <TextField name='address'/>
-              <TextField name='image'/>
-              <LongTextField name='description'/>
-              <SubmitField value='Submit'/>
+              <TextField id="edit-name" name='name'/>
+              <TextField id="edit-image"name='image'/>
+              <LongTextField id="edit-bio"name='bio'/>
+              <SubmitField id="edit-Submit"value='Submit'/>
               <ErrorsField/>
               <HiddenField name='owner' />
             </Segment>
@@ -58,7 +56,7 @@ class EditContact extends React.Component {
 }
 
 // Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
-EditContact.propTypes = {
+EditProfile.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
   ready: PropTypes.bool.isRequired,
@@ -78,4 +76,4 @@ export default withTracker(({ match }) => {
     doc,
     ready,
   };
-})(EditContact);
+})(EditProfile);
