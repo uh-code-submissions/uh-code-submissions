@@ -20,6 +20,8 @@ import Signout from '../pages/Signout';
 import ProblemPageAdmin from '../pages/ProblemPageAdmin';
 import Solution from '../pages/Solution';
 import UserProfile from '../pages/UserProfile';
+import AdminProfile from '../pages/AdminProfile';
+
 import EditProfile from '../pages/EditProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
@@ -41,6 +43,7 @@ class App extends React.Component {
             <ProtectedRoute path="/solution" component={Solution}/>
             <ProtectedRoute path="/userprofile" component={UserProfile}/>
             <ProtectedRoute path="/edit/:_id" component={EditProblem}/>
+            <ProtectedRoute path="/adminprofile" component={AdminProfile}/>
             <AdminProtectedRoute path="/newproblem" component={NewProblemPage}/>
             <AdminProtectedRoute path="/users" component={StudentDatabase}/>
             <AdminProtectedRoute path="/problempageadmin" component={ProblemPageAdmin}/>

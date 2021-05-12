@@ -1,14 +1,14 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Grid, Icon } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid, Icon, Feed } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Contact from '../components/Contact.jsx';
 import { Contacts } from '../../api/contact/Contacts';
+import { Link } from 'react-router-dom';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class UserProfile extends React.Component {
-
+class AdminProfile extends React.Component {
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -16,6 +16,7 @@ class UserProfile extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
+
     return (
       <Container id='userprofile-page'>
         <Header as="h2" textAlign="center">My Profile</Header>
@@ -31,9 +32,46 @@ class UserProfile extends React.Component {
             </Header>
           </Grid.Column>
           <Grid.Column>
-            <Header as='h3' color="black">
-              <Icon name="check circle" size="large"/>Submitted Solutions
-            </Header>
+            <Card.Group centered>
+              <Header as='h3' color="black">
+                <Icon name="pencil square" size="large"/>My Problems
+              </Header>
+              <Card>
+                <Card.Content>
+                  <Feed>
+                    <Feed.Event>
+                      <Feed.Label image='/images/Panda.png' size="medium"/>
+                      <Feed.Content>
+                        <Feed.Date content='1 day ago' />
+                        <Feed.Summary>
+                          You added <a>Two Sum</a> to your Problems Page.
+                        </Feed.Summary>
+                      </Feed.Content>
+                    </Feed.Event>
+
+                    <Feed.Event>
+                      <Feed.Label image='/images/Panda.png' size="medium"/>
+                      <Feed.Content>
+                        <Feed.Date content='3 days ago' />
+                        <Feed.Summary>
+                          You added <a>Knapsack</a> to your Problems Page.
+                        </Feed.Summary>
+                      </Feed.Content>
+                    </Feed.Event>
+
+                    <Feed.Event>
+                      <Feed.Label image='/images/Panda.png' size="medium"/>
+                      <Feed.Content>
+                        <Feed.Date content='4 days ago' />
+                        <Feed.Summary>
+                          You added <a>Sudoku Solver</a> to your Problems Page.
+                        </Feed.Summary>
+                      </Feed.Content>
+                    </Feed.Event>
+                  </Feed>
+                </Card.Content>
+              </Card>
+            </Card.Group>
           </Grid.Column>
         </Grid>
       </Container>
@@ -42,7 +80,7 @@ class UserProfile extends React.Component {
 }
 
 // Require an array of Stuff documents in the props.
-UserProfile.propTypes = {
+AdminProfile.propTypes = {
   contacts: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -59,4 +97,4 @@ export default withTracker(() => {
     contacts,
     ready,
   };
-})(UserProfile);
+})(AdminProfile);
