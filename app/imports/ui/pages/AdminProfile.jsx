@@ -5,7 +5,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Contact from '../components/Contact.jsx';
 import { Contacts } from '../../api/contact/Contacts';
-import { Link } from 'react-router-dom';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class AdminProfile extends React.Component {
@@ -32,7 +31,7 @@ class AdminProfile extends React.Component {
             </Header>
           </Grid.Column>
           <Grid.Column>
-            <Card.Group centered>
+            <Card.Group>
               <Header as='h3' color="black">
                 <Icon name="pencil square" size="large"/>My Problems
               </Header>
@@ -44,7 +43,7 @@ class AdminProfile extends React.Component {
                       <Feed.Content>
                         <Feed.Date content='1 day ago' />
                         <Feed.Summary>
-                          You added <a>Two Sum</a> to your Problems Page.
+                          You added <a>Two Sum</a> to the Problems Page.
                         </Feed.Summary>
                       </Feed.Content>
                     </Feed.Event>
@@ -54,7 +53,7 @@ class AdminProfile extends React.Component {
                       <Feed.Content>
                         <Feed.Date content='3 days ago' />
                         <Feed.Summary>
-                          You added <a>Knapsack</a> to your Problems Page.
+                          You added <a>Knapsack</a> to the Problems Page.
                         </Feed.Summary>
                       </Feed.Content>
                     </Feed.Event>
@@ -64,7 +63,25 @@ class AdminProfile extends React.Component {
                       <Feed.Content>
                         <Feed.Date content='4 days ago' />
                         <Feed.Summary>
-                          You added <a>Sudoku Solver</a> to your Problems Page.
+                          You added <a>Sudoku Solver</a> to the Problems Page.
+                        </Feed.Summary>
+                      </Feed.Content>
+                    </Feed.Event>
+                    <Feed.Event>
+                      <Feed.Label image='/images/Panda.png' size="medium"/>
+                      <Feed.Content>
+                        <Feed.Date content='5 days ago' />
+                        <Feed.Summary>
+                          You added <a>Count Bits</a> to the Problems Page.
+                        </Feed.Summary>
+                      </Feed.Content>
+                    </Feed.Event>
+                    <Feed.Event>
+                      <Feed.Label image='/images/Panda.png' size="medium"/>
+                      <Feed.Content>
+                        <Feed.Date content='7 days ago' />
+                        <Feed.Summary>
+                          You added <a>Decimal to Roman</a> to the Problems Page.
                         </Feed.Summary>
                       </Feed.Content>
                     </Feed.Event>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Grid, Icon } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid, Icon, Feed } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Contact from '../components/Contact.jsx';
@@ -34,6 +34,39 @@ class UserProfile extends React.Component {
             <Header as='h3' color="black">
               <Icon name="check circle" size="large"/>Submitted Solutions
             </Header>
+            <Card>
+              <Card.Content>
+                <Feed>
+                  <Feed.Event>
+                    <Feed.Label image='/images/Panda.png' size="medium"/>
+                    <Feed.Content>
+                      <Feed.Date content='1 day ago' />
+                      <Feed.Summary>
+                        You added a solution for the <a>Two Sum</a> problem.
+                      </Feed.Summary>
+                    </Feed.Content>
+                  </Feed.Event>
+                  <Feed.Event>
+                    <Feed.Label image='/images/Panda.png' size="medium"/>
+                    <Feed.Content>
+                      <Feed.Date content='4 days ago' />
+                      <Feed.Summary>
+                        You added a solution for the <a>Sudoku Solver</a> problem.
+                      </Feed.Summary>
+                    </Feed.Content>
+                  </Feed.Event>
+                  <Feed.Event>
+                    <Feed.Label image='/images/Panda.png' size="medium"/>
+                    <Feed.Content>
+                      <Feed.Date content='5 days ago' />
+                      <Feed.Summary>
+                        You added a solution for the <a>Count Bits</a> problem.
+                      </Feed.Summary>
+                    </Feed.Content>
+                  </Feed.Event>
+                </Feed>
+              </Card.Content>
+            </Card>
           </Grid.Column>
         </Grid>
       </Container>
