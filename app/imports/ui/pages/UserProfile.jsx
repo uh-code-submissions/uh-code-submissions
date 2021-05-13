@@ -40,30 +40,12 @@ class UserProfile extends React.Component {
                   <Feed.Event>
                     <Feed.Label image='/images/Panda.png' size="medium"/>
                     <Feed.Content>
-                      <Feed.Date content='1 day ago' />
                       <Feed.Summary>
-                        You added a solution for the <a>Two Sum</a> problem.
+                        You have not added any solutions yet!
                       </Feed.Summary>
                     </Feed.Content>
                   </Feed.Event>
-                  <Feed.Event>
-                    <Feed.Label image='/images/Panda.png' size="medium"/>
-                    <Feed.Content>
-                      <Feed.Date content='4 days ago' />
-                      <Feed.Summary>
-                        You added a solution for the <a>Sudoku Solver</a> problem.
-                      </Feed.Summary>
-                    </Feed.Content>
-                  </Feed.Event>
-                  <Feed.Event>
-                    <Feed.Label image='/images/Panda.png' size="medium"/>
-                    <Feed.Content>
-                      <Feed.Date content='5 days ago' />
-                      <Feed.Summary>
-                        You added a solution for the <a>Count Bits</a> problem.
-                      </Feed.Summary>
-                    </Feed.Content>
-                  </Feed.Event>
+
                 </Feed>
               </Card.Content>
             </Card>
