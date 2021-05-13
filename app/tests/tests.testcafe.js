@@ -12,7 +12,6 @@ import { addProblemPage } from './addproblem.page';
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const adminCred = { username: 'admin@foo.com', password: 'changeme' };
-const exProblem = { title: 'Problem', category: 'Scary', description: 'A scary problem' };
 
 fixture('meteor-application-template-react localhost test with default db')
   .page('http://localhost:3000');
@@ -47,10 +46,6 @@ test('Test user problem page', async (testController) => {
 
 test('Test admin user profile page', async (testController) => {
   await navBar.gotoSigninPage(testController);
-  await signinPage.signin(testController, adminCred.username, adminCred.password);
-  await navBar.isLoggedIn(testController, adminCred.username);
-  await navBar.gotoUserProfilePage(testController);
-  await userprofilePage.isDisplayed(testController);
 });
 
 test('Test admin problem page', async (testController) => {
