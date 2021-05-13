@@ -39,7 +39,6 @@ class UserProfile extends React.Component {
               <Card.Content>
                 <Feed>
                   <Feed.Event>
-                    <Feed.Label image='/images/Panda.png' size="medium"/>
                     <Feed.Content>
                       <Feed.Summary>
                         You have not added any solutions yet!
