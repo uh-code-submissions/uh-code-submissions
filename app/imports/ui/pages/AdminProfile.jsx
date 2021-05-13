@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Grid, Icon, Feed } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid, Icon, Feed, Image } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Contact from '../components/Contact.jsx';
@@ -26,9 +26,10 @@ class AdminProfile extends React.Component {
             </Card.Group>
           </Grid.Column>
           <Grid.Column>
-            <Header as='h3' color="grey">
-              <Icon name="student" size="large"/>Classes Taken:
+            <Header as='h3' color="black">
+              <Icon name="smile outline" size="large"/>Meme of the Day
             </Header>
+            <Image src='https://img.devrant.com/devrant/rant/r_862065_HS3UV.jpg' size='medium' rounded />
           </Grid.Column>
           <Grid.Column>
             <Card.Group>
