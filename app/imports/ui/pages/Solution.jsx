@@ -4,8 +4,9 @@ import swal from 'sweetalert';
 import {
   AutoForm,
   ErrorsField,
-  HiddenField,
   LongTextField,
+  SubmitField,
+  HiddenField,
 } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -21,11 +22,10 @@ class EditProblem extends React.Component {
 
   // On successful submit, insert the data.
   submit(data) {
-
     const { solution } = data;
     const owner = Meteor.user().username;
-    const problemID = this.props.prob._id;
-    Solutions.collection.save({ solution, problemID, owner }, (error) => (error ?
+    const problemID = this.props.problem._id;
+    Solutions.collection.insert({ solution, problemID, owner }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   }
@@ -40,13 +40,14 @@ class EditProblem extends React.Component {
     return (
       <Grid container centered>
         <Grid.Column>
-          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
+          <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
             <Segment>
               <Header as="h2" textAlign="center">Edit Problem</Header>
               <LongTextField name='solution'/>
+              <SubmitField value='Submit'/>
               <ErrorsField/>
-              <HiddenField name='problemID' />
-              <HiddenField name='owner' />
+              <HiddenField name='problemID'/>
+              <HiddenField name='owner'/>
             </Segment>
           </AutoForm>
         </Grid.Column>
@@ -61,6 +62,8 @@ EditProblem.propTypes = {
   model: PropTypes.object,
   prob: PropTypes.object,
   ready: PropTypes.bool.isRequired,
+  problem: PropTypes.object.isRequired,
+  documentId: PropTypes.object,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -80,5 +83,6 @@ export default withTracker(({ match }) => {
     doc,
     ready,
     prob,
+    documentId,
   };
 })(EditProblem);

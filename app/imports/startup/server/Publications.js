@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Problems } from '../../api/problem/Problems';
 import { Contacts } from '../../api/contact/Contacts';
-import Solutions from '../../api/solution/Solutions';
+import { Solutions } from '../../api/solution/Solutions';
 
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
