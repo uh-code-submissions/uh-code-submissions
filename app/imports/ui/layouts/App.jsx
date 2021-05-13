@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import NewProblemPage from '../pages/NewProblemPage';
 import ProblemPage from '../pages/ProblemPage';
-import Leaderboard from '../pages/Leaderboard';
 import ProfilePage from '../pages/ProfilePage';
 import EditProblem from '../pages/EditProblem';
 import NotFound from '../pages/NotFound';
@@ -36,7 +35,6 @@ class App extends React.Component {
             <Route path="/signup" component={Signup}/>
             <Route path="/signout" component={Signout}/>
             <ProtectedRoute path="/problempage" component={ProblemPage}/>
-            <ProtectedRoute path="/leaderboard" component={Leaderboard}/>
             <ProtectedRoute path="/profilepage" component={ProfilePage}/>
             <ProtectedRoute path="/editprofile/:_id" component={EditProfile}/>
             <ProtectedRoute path="/solution/:_id" component={Solution}/>

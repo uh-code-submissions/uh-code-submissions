@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Grid, Header, Message, Segment, Select, TextArea, Checkbox, Button } from 'semantic-ui-react';
+import { Container, Form, Grid, Header, Message, Segment, Select, TextArea, Button } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+import { Contacts } from '../../api/contact/Contacts';
 
 const classStanding = [
   { key: 'f', text: 'Freshmen', value: 'F' },
@@ -25,7 +26,7 @@ class Signup extends React.Component {
   /* Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { firstName: '', lastName: '', email: '', password: '', classesTaken: '', error: '', redirectToReferer: false };
+    this.state = { firstName: '', lastName: '', email: '', password: '', bio: '', image: '', error: '', redirectToReferer: false };
   }
 
   /* Update the form controls each time the user interacts with them. */
@@ -35,8 +36,17 @@ class Signup extends React.Component {
 
   /* Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
-    const { firstName, lastName, email, password, classesTaken } = this.state;
-    Accounts.createUser({ firstName, lastName, email, username: email, password, classesTaken }, (err) => {
+    const { firstName, lastName, email, password, bio, image } = this.state;
+    Accounts.createUser({ firstName, lastName, email, username: email, password, bio, image }, (err) => {
+      if (err) {
+        this.setState({ error: err.reason });
+      } else {
+        this.setState({ error: '', redirectToReferer: true });
+      }
+    });
+    const name = firstName + lastName;
+    const username = email;
+    Contacts.collection.insert({ name: name, username: username, image: image, bio: bio }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -47,7 +57,7 @@ class Signup extends React.Component {
 
   /* Display the signup form. Redirect to add page after successful registration and login. */
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/add' } };
+    const { from } = this.props.location.state || { from: { pathname: '/' } };
     // if correct authentication, redirect to from: page instead of signup screen
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
@@ -140,19 +150,25 @@ class Signup extends React.Component {
                       onChange={this.handleChange}
                     />
                   </Form.Group>
-                  <Form>
-                    <Form.Field
-                      control={TextArea}
-                      label='Bio'
-                      placeholder='Tell us more about you...'
-                    />
-                    <Form.Field
+                  <Form.Field>
+                    <Form.Input
+                      width={8}
                       required
-                      control={Checkbox}
-                      label='I agree to the Terms and Conditions'
+                      label="Image"
+                      id="signup-form-image"
+                      name="Image"
+                      type="String"
+                      placeholder="Image URL"
+                      onChange={this.handleChange}
                     />
-                    <Form.Field control={Button}>Submit</Form.Field>
-                  </Form>
+
+                  </Form.Field>
+                  <Form.Field
+                    control={TextArea}
+                    label='Bio'
+                    placeholder='Tell us more about you...'
+                  />
+                  <Form.Field control={Button}>Submit</Form.Field>
                 </Segment>
               </Form>
               <Message>
