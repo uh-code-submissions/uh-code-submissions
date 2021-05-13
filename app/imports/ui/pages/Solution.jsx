@@ -42,7 +42,7 @@ class EditProblem extends React.Component {
         <Grid.Column>
           <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
             <Segment>
-              <Header as="h2" textAlign="center">Edit Problem</Header>
+              <Header as="h2" textAlign="center">Please Enter Your Solution:</Header>
               <LongTextField name='solution'/>
               <SubmitField value='Submit'/>
               <ErrorsField/>
