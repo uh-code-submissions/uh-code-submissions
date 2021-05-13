@@ -6,24 +6,26 @@ import {
   ErrorsField,
   HiddenField,
   LongTextField,
-  SubmitField,
-  TextField,
 } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Problems } from '../../api/problem/Problems';
+import { Solutions } from '../../api/solution/Solutions';
 
-const bridge = new SimpleSchema2Bridge(Problems.schema);
+const bridge = new SimpleSchema2Bridge(Solutions.schema);
 
 /** Renders the Page for editing a single document. */
 class EditProblem extends React.Component {
 
   // On successful submit, insert the data.
   submit(data) {
-    const { title, category, description, _id } = data;
-    Problems.collection.update(_id, { $set: { title, category, description } }, (error) => (error ?
+
+    const { solution } = data;
+    const owner = Meteor.user().username;
+    const problemID = this.props.prob._id;
+    Solutions.collection.save({ solution, problemID, owner }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   }
@@ -41,11 +43,9 @@ class EditProblem extends React.Component {
           <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
             <Segment>
               <Header as="h2" textAlign="center">Edit Problem</Header>
-              <TextField name='title'/>
-              <TextField name='category'/>
-              <LongTextField name='description'/>
-              <SubmitField value='Submit'/>
+              <LongTextField name='solution'/>
               <ErrorsField/>
+              <HiddenField name='problemID' />
               <HiddenField name='owner' />
             </Segment>
           </AutoForm>
@@ -59,6 +59,7 @@ class EditProblem extends React.Component {
 EditProblem.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
+  prob: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -68,12 +69,16 @@ export default withTracker(({ match }) => {
   const documentId = match.params._id;
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe(Problems.userPublicationName);
+  const subscription2 = Meteor.subscribe(Solutions.userPublicationName);
   // Determine if the subscription is ready
-  const ready = subscription.ready();
+  const ready = subscription.ready() && subscription2.ready();
   // Get the document
   const doc = Problems.collection.findOne(documentId);
+  const prob = Problems;
+
   return {
     doc,
     ready,
+    prob,
   };
 })(EditProblem);
