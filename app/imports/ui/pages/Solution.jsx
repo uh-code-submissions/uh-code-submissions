@@ -4,9 +4,9 @@ import swal from 'sweetalert';
 import {
   AutoForm,
   ErrorsField,
+  HiddenField,
   LongTextField,
   SubmitField,
-  TextField,
 } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -19,8 +19,6 @@ import { Solutions } from '../../api/solution/Solutions';
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
   solution: String,
-  problemID: String,
-  owner: String,
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
@@ -57,10 +55,10 @@ class Solution extends React.Component {
           <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
             <Segment>
               <Header as="h2" textAlign="center">Please Enter Your Solution:</Header>
-              <TextField id="problemID" name='problemID'/>
-              <TextField id="owner"name='owner'/>
               <LongTextField name='solution'/>
               <SubmitField value='Submit'/>
+              <HiddenField id="problemID" name='problemID'/>
+              <HiddenField id="owner"name='owner'/>
               <ErrorsField/>
             </Segment>
           </AutoForm>
