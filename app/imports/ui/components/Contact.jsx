@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Grid, Icon, Label } from 'semantic-ui-react';
+import { Card, Image, Grid, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -21,11 +21,6 @@ class Contact extends React.Component {
             <Card.Description>
               {this.props.contact.bio}
             </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <a>
-              <Icon name='heart'/> Rating: {this.props.contact.rating}
-            </a>
           </Card.Content>
           <Label active color='grey' size='big'><Link to={`/editprofile/${this.props.contact._id}`} id="editUserButton">Edit Profile</Link></Label>
         </Card>
