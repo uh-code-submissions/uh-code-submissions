@@ -57,8 +57,9 @@ class Solution extends React.Component {
               <Header as="h2" textAlign="center">Please Enter Your Solution:</Header>
               <LongTextField name='solution'/>
               <SubmitField value='Submit'/>
-              <HiddenField id="problemID" name='problemID'/>
-              <HiddenField id="owner"name='owner'/>
+              <ErrorsField/>
+              <HiddenField name='problemID'/>
+              <HiddenField name='owner'/>
               <ErrorsField/>
             </Segment>
           </AutoForm>
