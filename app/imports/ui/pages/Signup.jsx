@@ -30,8 +30,7 @@ class Signup extends React.Component {
         this.setState({ error: '', redirectToReferer: true });
       }
     });
-    const username = email;
-    Contacts.collection.insert({ name: name, username: username, image: image, bio: bio }, (err) => {
+    Contacts.collection.insert({ email: email, name: name, image: image, bio: bio }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {

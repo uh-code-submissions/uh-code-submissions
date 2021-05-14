@@ -14,7 +14,6 @@ class ContactsCollection {
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
       email: String,
-      password: String,
       name: String,
       image: String,
       bio: String,
