@@ -19,6 +19,8 @@ import { Solutions } from '../../api/solution/Solutions';
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
   solution: String,
+  problemID: String,
+  owner: String,
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);

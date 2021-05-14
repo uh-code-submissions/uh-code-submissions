@@ -1,23 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Grid, Header, Message, Segment, Select, TextArea, Button } from 'semantic-ui-react';
+import { Container, Form, Grid, Header, Message, Segment, TextArea, Button } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 import { Contacts } from '../../api/contact/Contacts';
-
-const classStanding = [
-  { key: 'f', text: 'Freshmen', value: 'F' },
-  { key: 'so', text: 'Sophomore', value: 'S' },
-  { key: 'j', text: 'Junior', value: 'J' },
-  { key: 'se', text: 'Senior', value: 'S' },
-  { key: 'o', text: 'Other', value: 'O' },
-];
-
-const genderOptions = [
-  { key: 'f', text: 'Female', value: 'F' },
-  { key: 'm', text: 'Male', value: 'M' },
-  { key: 'o', text: 'Other', value: 'O' },
-];
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -36,15 +22,14 @@ class Signup extends React.Component {
 
   /* Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
-    const { firstName, lastName, email, password, bio, image } = this.state;
-    Accounts.createUser({ firstName, lastName, email, username: email, password, bio, image }, (err) => {
+    const { name, email, password, bio, image } = this.state;
+    Accounts.createUser({ name, email, username: email, password, bio, image }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
         this.setState({ error: '', redirectToReferer: true });
       }
     });
-    const name = firstName + lastName;
     const username = email;
     Contacts.collection.insert({ name: name, username: username, image: image, bio: bio }, (err) => {
       if (err) {
@@ -96,67 +81,23 @@ class Signup extends React.Component {
                   />
                   <Form.Group>
                     <Form.Input
-                      width={8}
+                      width={16}
                       required
-                      label="First Name"
-                      id="signup-form-firstName"
-                      name="firstName"
-                      type="firstName"
-                      placeholder="First Name"
-                      onChange={this.handleChange}
-                    />
-                    <Form.Input
-                      width={8}
-                      required
-                      label="Last Name"
-                      id="signup-form-lastName"
-                      name="lastName"
-                      type="lastName"
-                      placeholder="Last Name"
-                      onChange={this.handleChange}
-                    />
-                  </Form.Group>
-                  <Form.Group widths='equal'>
-                    <Form.Input
-                      inverted
-                      fluid
-                      required
-                      label="Class Standing"
-                      name="classStanding"
-                      placeholder="Class Standing"
-                      control={Select}
-                      options={classStanding}
-                      onChange={this.handleChange}
-                    />
-                    <Form.Input
-                      inverted
-                      fluid
-                      required
-                      label="Age"
-                      name="age"
-                      placeholder="Age"
-                      type="number"
-                      onChange={this.handleChange}
-                    />
-                    <Form.Input
-                      inverted
-                      fluid
-                      required
-                      label="Gender"
-                      name="genderOptions"
-                      placeholder="Gender"
-                      control={Select}
-                      options={genderOptions}
+                      label="Your Name"
+                      id="signup-form-name"
+                      name="name"
+                      type="name"
+                      placeholder="First Name, Last Name"
                       onChange={this.handleChange}
                     />
                   </Form.Group>
                   <Form.Field>
                     <Form.Input
-                      width={8}
+                      width={16}
                       required
                       label="Image"
                       id="signup-form-image"
-                      name="Image"
+                      name="image"
                       type="String"
                       placeholder="Image URL"
                       onChange={this.handleChange}
@@ -166,7 +107,9 @@ class Signup extends React.Component {
                   <Form.Field
                     control={TextArea}
                     label='Bio'
+                    name="bio"
                     placeholder='Tell us more about you...'
+                    onChange={this.handleChange}
                   />
                   <Form.Field control={Button}>Submit</Form.Field>
                 </Segment>
