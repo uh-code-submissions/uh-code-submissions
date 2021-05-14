@@ -4,44 +4,30 @@ import swal from 'sweetalert';
 import {
   AutoForm,
   ErrorsField,
-  HiddenField,
   LongTextField,
   SubmitField,
+  HiddenField,
 } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import SimpleSchema from 'simpl-schema';
 import { Problems } from '../../api/problem/Problems';
 import { Solutions } from '../../api/solution/Solutions';
 
-// Create a schema to specify the structure of the data to appear in the form.
-const formSchema = new SimpleSchema({
-  solution: String,
-  problemID: String,
-  owner: String,
-});
-
-const bridge = new SimpleSchema2Bridge(formSchema);
+const bridge = new SimpleSchema2Bridge(Solutions.schema);
 
 /** Renders the Page for editing a single document. */
-class Solution extends React.Component {
+class EditProblem extends React.Component {
 
   // On successful submit, insert the data.
-  submit(data, formRef) {
+  submit(data) {
     const { solution } = data;
     const owner = Meteor.user().username;
     const problemID = this.props.problem._id;
-    Solutions.collection.insert({ solution, problemID, owner },
-      (error) => {
-        if (error) {
-          swal('Error', error.message, 'error');
-        } else {
-          swal('Success', 'Item added successfully', 'success');
-          formRef.reset();
-        }
-      });
+    Solutions.collection.insert({ solution, problemID, owner }, (error) => (error ?
+      swal('Error', error.message, 'error') :
+      swal('Success', 'Item updated successfully', 'success')));
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -62,7 +48,6 @@ class Solution extends React.Component {
               <ErrorsField/>
               <HiddenField name='problemID'/>
               <HiddenField name='owner'/>
-              <ErrorsField/>
             </Segment>
           </AutoForm>
         </Grid.Column>
@@ -72,7 +57,7 @@ class Solution extends React.Component {
 }
 
 // Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
-Solution.propTypes = {
+EditProblem.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
   prob: PropTypes.object,
@@ -100,4 +85,4 @@ export default withTracker(({ match }) => {
     prob,
     documentId,
   };
-})(Solution);
+})(EditProblem);
