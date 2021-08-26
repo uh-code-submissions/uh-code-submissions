@@ -1,1 +1,118 @@
-mongodb+srv://admin:<password>@cluster0.fdvjz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+{
+  "defaultAccounts": [
+    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
+    { "email": "john@foo.com", "password": "changeme" }
+  ],
+
+  "defaultProblems": [{
+    "title": "Two Sum", "category": "Arrays",
+    "owner": "admin@foo.com",
+    "description": "Given an array of integers and a key, return True if there are two values within the array that add up to the key. Return False otherwise."
+  },
+    {
+      "title": "Knapsack", "category": "Dynamic Programming",
+      "owner": "admin@foo.com",
+      "description": "Given the weights and values of n items and a capacity W of a sack. Find the maximum value of items to put in the sack without going over capacity."
+    },
+    {
+      "title": "Sudoku Solver", "category": "Recursion",
+      "owner": "admin@foo.com",
+      "description": "Given an unfinished sudoku puzzle, output a correctly solved sudoku puzzle."
+    },
+    {
+      "title": "Count Bits", "category": "Bits",
+      "owner": "admin@foo.com",
+      "description": "Write a function that takes an unsigned integer and return the number of '1' bits it has (also known as the Hamming weight)."
+    },
+    {
+      "title": "Decimal to Roman", "category": "Beginner",
+      "owner": "admin@foo.com",
+      "description": "Given an integer, convert it to a roman numeral. Input is guaranteed to be within the range from 1 to 3999."
+    },
+    {
+      "title": "Remove Kth last element from LL", "category": "Lists",
+      "owner": "admin@foo.com",
+      "description": "Given a linked list, remove the k-th node from the end of list and return its head."
+    },
+    {
+      "title": "Decimal to Roman", "category": "Beginner",
+      "owner": "admin@foo.com",
+      "description": "Given an integer, convert it to a roman numeral. Input is guaranteed to be within the range from 1 to 3999."
+    },
+    {
+      "title": "DP Fibonacci", "category": "Recursion",
+      "owner": "admin@foo.com",
+      "description": "The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1."
+    },
+    {
+      "title": "Delete duplicates", "category": "Arrays",
+      "owner": "admin@foo.com",
+      "description": "Given a sorted array, delete all duplicates in the array."
+    },
+    {
+      "title": "Swap Bits", "category": "Bits",
+      "owner": "admin@foo.com",
+      "description": "Write a function that swaps the ith and jth bit of a given long."
+    },
+    {
+      "title": "Rod Cutting", "category": "Dynamic Programming",
+      "owner": "admin@foo.com",
+      "description": "Given a rod of n inches and an array of prices of pieces of size smaller than n. Determine the maximum value obtainable by cutting the rod and selling it."
+    },
+    {
+      "title": "Merge 2 sorted LL", "category": "Lists",
+      "owner": "admin@foo.com",
+      "description": "Merge two sorted linked lists and return it as a new sorted list. The new list should be made by splicing together the nodes of the first two lists."
+    },
+    {
+      "title": "Merge 2 sorted LL", "category": "Lists",
+      "owner": "admin@foo.com",
+      "description": "Merge two sorted linked lists and return it as a new sorted list. The new list should be made by splicing together the nodes of the first two lists."
+    },
+    {
+      "title": "Even Odd Sum", "category": "Beginner",
+      "owner": "admin@foo.com",
+      "description": "Check if a sum of sequence of consecutive n integers is even or odd or neither. The sequence can start from any number on the real integer line. Return 1 for even, return 0 for odd, return -1 for neither."
+    },
+    {
+      "title": "Compute power pow(x,y) => x^y", "category": "Bits",
+      "owner": "admin@foo.com",
+      "description": "Given a double x and int y, return x^y as a double."
+    },
+    {
+      "title": "Optimal Sort Moves", "category": "Beginner",
+      "owner": "admin@foo.com",
+      "description": "Determine the number of \"moves\" it would take to sort an int array. Each move is considered the move of ONE int. For example, A[4] to the 3rd index. And NOT, \"Swap A[4] and A[5]\"."
+    }
+  ],
+
+  "defaultContacts": [{
+    "name": "Big Panda",
+    "username": "panda142",
+    "rating": "5.0",
+    "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
+    "bio": "Hi, my name is Panda. I am a Panda officer at University of Hawaii at Manoa. I am pursuing a degree in Computer Science, and I frequently work with Bamboo.",
+    "owner": "john@foo.com"
+  },
+    {
+      "name": "Teacher Panda",
+      "username": "panda808",
+      "rating": "5.0",
+      "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
+      "bio": "Hi, my name is Panda. I am a Panda teacher at University of Hawaii at Manoa. I am pursuing a degree in Computer Science, and I frequently work with Bamboo.",
+      "owner": "admin@foo.com"
+    }
+  ],
+  "monti": {
+    "appId": "KDpmgMo4JroRNkgi9",
+    "appSecret": "8182c07a-d86f-4460-aa76-3f448b24d973"
+  }
+}
+
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb+srv://admin:UHMcode@cluster0.fdvjz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    }
+  },
+}
