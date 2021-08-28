@@ -106,13 +106,11 @@
   "monti": {
     "appId": "KDpmgMo4JroRNkgi9",
     "appSecret": "8182c07a-d86f-4460-aa76-3f448b24d973"
-  }
-}
+  },
 
-{
   "galaxy.meteor.com": {
     "env": {
       "MONGO_URL": "mongodb+srv://admin:UHMcode@cluster0.fdvjz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
     }
-  },
+  }
 }
